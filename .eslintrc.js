@@ -68,7 +68,6 @@ module.exports = {
 
     // Game-specific considerations
     'no-alert': 'warn', // Avoid alerts in games
-    'no-confirm': 'warn', // Avoid confirms in games
     'no-global-assign': 'error', // Prevent accidental global assignments
   },
   globals: {
@@ -78,7 +77,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*.config.js', 'vite.config.js', '.eslintrc.js'],
+      files: ['*.config.js', '*.config.ts', 'vite.config.ts', '.eslintrc.js'],
       env: {
         node: true,
       },
@@ -87,10 +86,31 @@ module.exports = {
       },
     },
     {
-      files: ['src/test/**/*.js', '**/*.test.js', '**/*.spec.js'],
+      files: ['src/test/**/*.js', 'src/test/**/*.ts', '**/*.test.js', '**/*.test.ts', '**/*.spec.js', '**/*.spec.ts'],
       rules: {
         'no-magic-numbers': 'off', // Tests often have magic numbers
         'no-console': 'off', // Allow console in tests
+      },
+    },
+    {
+      files: ['*.ts', '*.tsx'],
+      parser: '@typescript-eslint/parser',
+      plugins: ['@typescript-eslint'],
+      extends: ['plugin:@typescript-eslint/recommended'],
+      rules: {
+        '@typescript-eslint/no-unused-vars': [
+          'error',
+          {
+            argsIgnorePattern: '^_',
+            varsIgnorePattern: '^_',
+          },
+        ],
+        '@typescript-eslint/no-explicit-any': 'warn',
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+        '@typescript-eslint/no-non-null-assertion': 'warn',
+        'no-unused-vars': 'off',
+        'no-undef': 'off',
       },
     },
   ],

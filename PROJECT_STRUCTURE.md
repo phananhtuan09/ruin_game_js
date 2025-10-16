@@ -31,85 +31,92 @@ ruin_game/
 │
 ├── src/
 │   ├── core/                         # Reusable "Mini Engine"
-│   │   ├── Application.js            # Main application bootstrap
-│   │   ├── AssetLoader.js            # Asset loading and caching
-│   │   ├── EventEmitter.js           # Global event system
-│   │   ├── SceneManager.js           # Scene transitions and management
-│   │   ├── Scene.js                  # Base scene class
-│   │   ├── TimeManager.js            # Delta time, pause/resume, slow-motion
-│   │   ├── DebugManager.js           # Debug overlays, bounding boxes, logs
+│   │   ├── Application.ts            # Main application bootstrap
+│   │   ├── AssetLoader.ts            # Asset loading and caching
+│   │   ├── EventEmitter.ts           # Global event system
+│   │   ├── SceneManager.ts           # Scene transitions and management
+│   │   ├── Scene.ts                  # Base scene class
+│   │   ├── TimeManager.ts            # Delta time, pause/resume, slow-motion
+│   │   ├── DebugManager.ts           # Debug overlays, bounding boxes, logs
 │   │   └── input/
-│   │       ├── InputManager.js       # Keyboard, mouse, gamepad input
-│   │       └── actions.js            # Input action mappings
+│   │       ├── InputManager.ts       # Keyboard, mouse, gamepad input
+│   │       └── actions.ts            # Input action mappings
 │   │
 │   ├── game/                         # Game-specific logic
 │   │   ├── ecs/                      # Entity-Component-System
 │   │   │   ├── components/
-│   │   │   │   ├── PositionComponent.js      # World position data
-│   │   │   │   ├── VelocityComponent.js      # Movement speed and direction
-│   │   │   │   ├── SpriteComponent.js        # Visual representation
-│   │   │   │   ├── HealthComponent.js        # HP, damage, healing
-│   │   │   │   ├── FieldOfViewComponent.js   # Vision range and fog of war
-│   │   │   │   ├── InventoryComponent.js     # Item storage and management
-│   │   │   │   ├── CollisionComponent.js     # Collision boundaries
-│   │   │   │   └── AiComponent.js            # AI behavior data
+│   │   │   │   ├── PositionComponent.ts      # World position data
+│   │   │   │   ├── VelocityComponent.ts      # Movement speed and direction
+│   │   │   │   ├── SpriteComponent.ts        # Visual representation
+│   │   │   │   ├── HealthComponent.ts        # HP, damage, healing
+│   │   │   │   ├── FieldOfViewComponent.ts   # Vision range and fog of war
+│   │   │   │   ├── InventoryComponent.ts     # Item storage and management
+│   │   │   │   ├── CollisionComponent.ts     # Collision boundaries
+│   │   │   │   └── AiComponent.ts            # AI behavior data
 │   │   │   │
 │   │   │   ├── systems/
-│   │   │   │   ├── MovementSystem.js         # Process movement and physics
-│   │   │   │   ├── RenderSystem.js           # Draw entities to screen
-│   │   │   │   ├── CollisionSystem.js        # Handle collisions
-│   │   │   │   ├── LightingSystem.js         # Dynamic lighting and shadows
-│   │   │   │   ├── AiSystem.js               # Enemy AI processing
-│   │   │   │   └── InventorySystem.js        # Item pickup and usage
+│   │   │   │   ├── MovementSystem.ts         # Process movement and physics
+│   │   │   │   ├── RenderSystem.ts           # Draw entities to screen
+│   │   │   │   ├── CollisionSystem.ts        # Handle collisions
+│   │   │   │   ├── LightingSystem.ts         # Dynamic lighting and shadows
+│   │   │   │   ├── AiSystem.ts               # Enemy AI processing
+│   │   │   │   └── InventorySystem.ts        # Item pickup and usage
 │   │   │   │
 │   │   │   ├── entities/
-│   │   │   │   └── archetypes.js             # Entity templates and factories
+│   │   │   │   └── archetypes.ts             # Entity templates and factories
 │   │   │   │
-│   │   │   └── World.js                      # ECS world coordinator
+│   │   │   └── World.ts                      # ECS world coordinator
 │   │   │
 │   │   ├── map/                              # Map generation and management
-│   │   │   ├── MapGenerator.js               # Procedural dungeon generation
-│   │   │   ├── MapManager.js                 # Current map state and grid
-│   │   │   └── TileManager.js                # Tile rendering and collision
+│   │   │   ├── MapGenerator.ts               # Procedural dungeon generation
+│   │   │   ├── MapManager.ts                 # Current map state and grid
+│   │   │   └── TileManager.ts                # Tile rendering and collision
 │   │   │
 │   │   ├── scenes/
-│   │   │   ├── MainMenuScene.js              # Main menu and navigation
-│   │   │   ├── DungeonScene.js               # Core gameplay scene
-│   │   │   ├── GameOverScene.js              # Death and restart screen
-│   │   │   ├── VictoryScene.js               # Level completion screen
-│   │   │   └── PauseScene.js                 # Game pause overlay
+│   │   │   ├── MainMenuScene.ts              # Main menu and navigation
+│   │   │   ├── DungeonScene.ts               # Core gameplay scene
+│   │   │   ├── GameOverScene.ts              # Death and restart screen
+│   │   │   ├── VictoryScene.ts               # Level completion screen
+│   │   │   └── PauseScene.ts                 # Game pause overlay
 │   │   │
 │   │   └── ui/
-│   │       ├── HUD.js                        # Health bar, score display
-│   │       ├── Minimap.js                    # Small overview map
-│   │       ├── InventoryPanel.js             # Item management UI
-│   │       ├── DialogueBox.js                # NPC conversations
-│   │       └── MainMenu.js                   # Menu interface components
+│   │       ├── HUD.ts                        # Health bar, score display
+│   │       ├── Minimap.ts                    # Small overview map
+│   │       ├── InventoryPanel.ts             # Item management UI
+│   │       ├── DialogueBox.ts                # NPC conversations
+│   │       └── MainMenu.ts                   # Menu interface components
 │   │
 │   ├── modules/                              # Independent feature modules
 │   │   ├── audio/
-│   │   │   ├── AudioManager.js               # Sound effect and music control
-│   │   │   └── SpatialAudio.js               # 3D positioned audio
+│   │   │   ├── AudioManager.ts               # Sound effect and music control
+│   │   │   └── SpatialAudio.ts               # 3D positioned audio
 │   │   ├── physics/
-│   │   │   ├── PhysicsManager.js             # Physics simulation wrapper
-│   │   │   └── CollisionDetection.js         # Collision algorithms
+│   │   │   ├── PhysicsManager.ts             # Physics simulation wrapper
+│   │   │   └── CollisionDetection.ts         # Collision algorithms
 │   │   ├── quest/
-│   │   │   ├── QuestManager.js               # Quest tracking and completion
-│   │   │   └── Objective.js                  # Individual quest objectives
+│   │   │   ├── QuestManager.ts               # Quest tracking and completion
+│   │   │   └── Objective.ts                  # Individual quest objectives
 │   │   ├── save/
-│   │   │   ├── SaveManager.js                # Game state persistence
-│   │   │   └── PlayerProgress.js             # Progress tracking
+│   │   │   ├── SaveManager.ts                # Game state persistence
+│   │   │   └── PlayerProgress.ts             # Progress tracking
 │   │   └── effects/
-│   │       ├── ParticleSystem.js             # Visual effects
-│   │       └── ScreenEffects.js              # Screen shake, fade, etc.
+│   │       ├── ParticleSystem.ts             # Visual effects
+│   │       └── ScreenEffects.ts              # Screen shake, fade, etc.
 │   │
 │   ├── shared/                               # Shared utilities and constants
-│   │   ├── constants.js                      # Game constants and enums
-│   │   ├── math.js                           # Vector math, interpolation
-│   │   ├── utils.js                          # General utility functions
-│   │   └── Config.js                         # Global configuration
+│   │   ├── constants.ts                      # Game constants and enums
+│   │   ├── math.ts                           # Vector math, interpolation
+│   │   ├── utils.ts                          # General utility functions
+│   │   └── Config.ts                         # Global configuration
 │   │
-│   └── main.js                               # Application entry point
+│   ├── types/                                # TypeScript type definitions
+│   │   ├── global.d.ts                       # Global type declarations
+│   │   ├── game.d.ts                         # Game-specific types
+│   │   ├── ecs.d.ts                          # ECS system types
+│   │   ├── assets.d.ts                       # Asset loading types
+│   │   └── events.d.ts                       # Event system types
+│   │
+│   └── main.ts                               # Application entry point
 │
 ├── tests/                                    # Testing suite
 │   ├── core/
@@ -130,9 +137,12 @@ ruin_game/
 │   ├── GAME_DESIGN.md                        # Game mechanics and features
 │   └── DEPLOYMENT.md                         # Build and deployment guide
 │
+├── learn/                                    # Learning resources and knowledge base
+│   └── opp.md                                # Object-Oriented Programming concepts
+│
 ├── config/                                   # Build and environment configs
-│   ├── vite.config.js                        # Vite build configuration
-│   ├── vite.config.prod.js                   # Production build settings
+│   ├── vite.config.ts                        # Vite build configuration
+│   ├── vite.config.prod.ts                   # Production build settings
 │   └── eslint.config.js                      # ESLint configuration
 │
 ├── AGENTS.md                                 # AI agent guidelines
@@ -142,6 +152,8 @@ ruin_game/
 ├── README.md                                 # Project overview
 ├── CHANGELOG.md                              # Version history
 ├── package.json                              # Dependencies and scripts
+├── tsconfig.json                             # TypeScript configuration
+├── vite.config.ts                            # Vite build configuration
 ├── .eslintrc.js                              # ESLint rules
 ├── .prettierrc.js                            # Prettier formatting
 ├── .gitignore                                # Git ignore patterns
@@ -169,38 +181,6 @@ ruin_game/
 - **Purpose**: Common utilities used across all layers
 - **Dependencies**: None or minimal external dependencies
 - **Principle**: Pure functions and constants
-
-## File Naming Conventions
-
-### Classes and Components
-- **PascalCase** for classes: `MovementSystem.js`, `PositionComponent.js`
-- **Suffix with type**: `Component.js`, `System.js`, `Manager.js`, `Scene.js`
-
-### Utilities and Constants
-- **camelCase** for utilities: `math.js`, `utils.js`
-- **lowercase** for constants: `constants.js`, `actions.js`
-
-### Data Files
-- **kebab-case** for JSON data: `enemy-stats.json`, `level-config.json`
-- **Grouped by type**: Place in appropriate `/definitions/` subfolder
-
-## Import/Export Patterns
-
-### ES6 Modules
-- Use **named exports** for utilities and components
-- Use **default exports** for classes and main modules
-- **Barrel exports** in index.js files for clean imports
-
-### Example Import Structure
-```javascript
-// Good: Clear module boundaries
-import { Vector2, lerp } from '../shared/math.js';
-import { GAME_STATES } from '../shared/constants.js';
-import MovementSystem from './systems/MovementSystem.js';
-
-// Avoid: Cross-layer violations
-// import DungeonScene from '../game/scenes/DungeonScene.js'; // From core layer
-```
 
 ## Data Flow Architecture
 
