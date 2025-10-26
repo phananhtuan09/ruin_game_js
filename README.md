@@ -4,7 +4,7 @@ A dungeon exploration roguelike game built with JavaScript and PixiJS.
 
 ## Overview
 
-**Ruin** is a procedurally generated dungeon crawler where players explore mysterious dungeons, fight monsters, collect loot, and progress through increasingly challenging levels. The game features dynamic lighting, tactical combat, and a rich progression system.
+Ruin is a dungeon exploration game built with JavaScript and PixiJS. This is a roguelike/dungeon crawler where players explore procedurally generated dungeons, fight monsters, collect loot, and progress through increasingly challenging levels.
 
 ## Features
 
@@ -17,12 +17,10 @@ A dungeon exploration roguelike game built with JavaScript and PixiJS.
 
 ## Technology Stack
 
-- **Engine**: PixiJS 8.0+ for 2D graphics rendering
-- **Language**: JavaScript ES2022+ with modern syntax
-- **Build Tool**: Vite for fast development and optimized builds
+- **Frontend**: JavaScript ES2022+ with PixiJS for 2D graphics
+- **Build Tool**: Vite for development and production builds
 - **Code Quality**: ESLint + Prettier for consistent code style
-- **Audio**: @pixi/sound for spatial audio management
-- **Architecture**: ECS (Entity-Component-System) pattern
+- **Audio**: @pixi/sound for game audio management
 
 ## Requirements
 
@@ -90,8 +88,8 @@ src/
 ## Contributing
 
 1. Read `AGENTS.md` for AI agent guidelines
-2. Follow coding standards in `CODE_CONVENTIONS.md`
-3. Understand project structure in `PROJECT_STRUCTURE.md`
+2. Follow coding standards in `docs/ai/project/CODE_CONVENTIONS.md`
+3. Understand project structure in `docs/ai/project/PROJECT_STRUCTURE.md`
 4. Write tests for new features
 5. Submit pull requests with clear descriptions
 

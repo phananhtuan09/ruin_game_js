@@ -147,8 +147,9 @@ ruin_game/
 │
 ├── AGENTS.md                                 # AI agent guidelines
 ├── WRAP.md                                   # AI context loading guide
-├── PROJECT_STRUCTURE.md                      # This file
-├── CODE_CONVENTIONS.md                       # Coding standards
+├── docs/ai/project/
+│   ├── PROJECT_STRUCTURE.md                      # This file
+│   └── CODE_CONVENTIONS.md                       # Coding standards
 ├── README.md                                 # Project overview
 ├── CHANGELOG.md                              # Version history
 ├── package.json                              # Dependencies and scripts
