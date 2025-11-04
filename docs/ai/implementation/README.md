@@ -1,65 +1,51 @@
 ---
 phase: implementation
-title: Implementation Guide
-description: Technical implementation notes, patterns, and code guidelines
+title: Implementation Documentation
+description: Feature implementation notes and tracking
 ---
 
-# Implementation Guide
+# Implementation Documentation
 
-## Development Setup
-**How do we get started?**
+## Purpose
+This directory contains implementation notes for individual features. These docs track what code was written, why, and how it aligns with the plan.
 
-- Prerequisites and dependencies
-- Environment setup steps
-- Configuration needed
+## Implementation Documentation Workflow
 
-## Code Structure
-**How is the code organized?**
+### Creating Implementation Notes
+Implementation notes are created automatically during `execute-plan`:
+- Command: `.cursor/commands/execute-plan.md`
+- Output: `docs/ai/implementation/feature-{name}.md`
+- Template: `docs/ai/implementation/feature-template.md`
 
-- Directory structure
-- Module organization
-- Naming conventions
+### Implementation Doc Structure
+Each implementation doc follows the template structure:
+- **Summary**: Brief description of overall solution approach
+- **Changes**: Per-task entries with:
+  - File paths and line ranges
+  - Approach/pattern used
+  - Brief description of changes
+- **Edge Cases**: List of handled edge cases
+- **Follow-ups**: TODOs or deferred work
 
-## Implementation Notes
-**Key technical details to remember:**
+### Purpose
+Implementation docs serve as:
+- **Audit trail**: What code was written for this feature
+- **Review reference**: For code-review and check-implementation commands
+- **Refactor guide**: Understanding what was done for future improvements
 
-### Core Features
-- Feature 1: Implementation approach
-- Feature 2: Implementation approach
-- Feature 3: Implementation approach
+### Execution Discipline
+- Provide a short status update before each meaningful action (1–3 sentences).
+- Perform edits via file editing tools; avoid printing large code for copy-paste.
+- After each batch of edits, run linter/type/build on changed files; auto-fix issues (up to 3 attempts) before requesting review.
 
-### Patterns & Best Practices
-- Design patterns being used
-- Code style guidelines
-- Common utilities/helpers
+## Template Reference
+See `feature-template.md` for the exact structure required for implementation notes.
 
-## Integration Points
-**How do pieces connect?**
+## Related Documentation
+- Planning docs: `../planning/`
+- Test plans: `../testing/`
+- Project standards: `../project/`
 
-- API integration details
-- Database connections
-- Third-party service setup
+---
 
-## Error Handling
-**How do we handle failures?**
-
-- Error handling strategy
-- Logging approach
-- Retry/fallback mechanisms
-
-## Performance Considerations
-**How do we keep it fast?**
-
-- Optimization strategies
-- Caching approach
-- Query optimization
-- Resource management
-
-## Security Notes
-**What security measures are in place?**
-
-- Authentication/authorization
-- Input validation
-- Data encryption
-- Secrets management
-
+**Note**: For general implementation patterns and best practices, refer to `../project/CODE_CONVENTIONS.md` and `../project/PROJECT_STRUCTURE.md`.

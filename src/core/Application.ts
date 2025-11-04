@@ -3,13 +3,16 @@ import * as PIXI from 'pixi.js';
 import { EventEmitter } from '@/core/EventEmitter';
 import { SceneManager } from '@/core/SceneManager';
 import { DIContainer } from '@/core/DIContainer';
+import { TimeManager } from '@/core/TimeManager';
+import { MainScene } from '@/game/scenes/MainScene';
 
-export class Application {
+ class Application {
   private static instance: Application;
-  private pixiApp: PIXI.Application;
-  private sceneManager: SceneManager;
-  private eventEmitter: EventEmitter;
-  private container: DIContainer;
+  private _pixiApp: PIXI.Application;
+  private _sceneManager: SceneManager;
+  private _eventEmitter: EventEmitter;
+  private _container: DIContainer;
+  private _timeManager: TimeManager;
 
   constructor() {
     if (Application.instance) {
@@ -21,8 +24,8 @@ export class Application {
   }
 
   private async initializePixi(): Promise<void> {
-    this.pixiApp = new PIXI.Application();
-    await this.pixiApp.init({
+    this._pixiApp = new PIXI.Application();
+    await this._pixiApp.init({
       width: 800,
       height: 600,
       backgroundColor: '#1099bb',
@@ -31,40 +34,31 @@ export class Application {
       antialias: true,
     });
 
-    document.body.appendChild(this.pixiApp.canvas);
+    this._pixiApp.ticker.add((delta: number) => {
+      this._timeManager.tick(delta)
+    })
+
+    document.body.appendChild(this._pixiApp.canvas);
     console.log('✅ PixiJS initialized');
   }
   private initializeManager(): void {
-    this.container = new DIContainer();
+    this._container = new DIContainer();
 
-    this.container.register('eventEmitter', () => new EventEmitter());
-    this.container.register(
+    this._container.register('eventEmitter', () => new EventEmitter());
+    this._container.register(
       'sceneManager',
-      () => new SceneManager(this.container.get('eventEmitter'))
+      () => new SceneManager(this._container.get('eventEmitter'))
     );
-
-    this.eventEmitter = this.container.get('eventEmitter');
-    this.sceneManager = this.container.get('sceneManager');
+    this._container.register('timeManager', () => new TimeManager());
+    this._eventEmitter = this._container.get('eventEmitter');
+    this._sceneManager = this._container.get('sceneManager');
+    this._timeManager = this._container.get('timeManager'); 
   }
 
   public start(): void {
     console.log('Game started');
-    this.createSimpleScene();
-  }
-
-  private createSimpleScene(): void {
-    const text = new PIXI.Text({
-      text: 'Hello World',
-      style: {
-        fontSize: 36,
-        fontWeight: 'bold',
-        fill: 0xffffff,
-      },
-    });
-
-    text.x = 400 - text.width / 2;
-    text.y = 300 - text.height / 2;
-
-    this.pixiApp.stage.addChild(text);
+    this._sceneManager.changeScene(new MainScene(this._pixiApp.stage))
   }
 }
+
+export default Application;

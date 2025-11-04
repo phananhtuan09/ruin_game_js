@@ -1,81 +1,99 @@
 ---
 phase: testing
-title: Testing Strategy
-description: Define testing approach, test cases, and quality assurance
+title: Testing Documentation
+description: Feature test plans and testing guidelines
 ---
 
-# Testing Strategy
+# Testing Documentation
 
-## Test Coverage Goals
-**What level of testing do we aim for?**
+## Purpose
+This directory contains test plans for individual features. These docs focus on simple, fast-running tests to verify logic correctness. Tests are automatically generated and executed by AI agents.
 
-- Unit test coverage target (default: 100% of new/changed code)
-- Integration test scope (critical paths + error handling)
-- End-to-end test scenarios (key user journeys)
-- Alignment with requirements/design acceptance criteria
+## Testing Workflow
 
-## Unit Tests
-**What individual components need testing?**
+### Creating Test Plans
+Use the `writing-test` command to generate test plans and test code:
+- Command: `.cursor/commands/writing-test.md`
+- Output: `docs/ai/testing/feature-{name}.md`
+- Template: `docs/ai/testing/feature-template.md`
 
-### Component/Module 1
-- [ ] Test case 1: [Description] (covers scenario / branch)
-- [ ] Test case 2: [Description] (covers edge case / error handling)
-- [ ] Additional coverage: [Description]
+### Automatic Test Generation
+The `writing-test` command automatically:
+1. **Analyzes code** from implementation notes or source files
+2. **Generates test code** with comprehensive test cases:
+   - Happy path scenarios
+   - Edge cases (null, undefined, empty, boundaries)
+   - Parameter combinations
+   - Error handling
+   - Type safety checks
+   - Property-based tests (when applicable)
+3. **Runs tests** automatically with detailed logging
+4. **Analyzes coverage** and generates additional tests to fill gaps
+5. **Updates test documentation** with results and coverage
 
-### Component/Module 2
-- [ ] Test case 1: [Description]
-- [ ] Test case 2: [Description]
-- [ ] Additional coverage: [Description]
+### Test Plan Structure
+Each test plan follows the template structure:
+- **Test Files Created**: List of all generated test files
+- **Unit Tests**: Test cases organized by function/component
+  - Happy path scenarios
+  - Edge cases (null, undefined, empty, boundaries)
+  - Parameter variations
+  - Error cases
+  - Type safety checks
+  - Property-based tests
+- **Run Command**: Command to execute tests
+- **Last Run Results**: Test execution summary with coverage
+- **Coverage Targets**: Coverage goals and current status
 
-## Integration Tests
-**How do we test component interactions?**
+### Testing Philosophy
+- **Focus**: Pure functions, small utilities, isolated component logic, parameter variations
+- **Speed**: Tests must run quickly via command line
+- **Simplicity**: Avoid complex rendering tests, E2E flows, or heavy setup
+- **Purpose**: Catch logic errors and edge cases through systematic testing
+- **Automation**: AI agents excel at generating comprehensive test cases and running them automatically
 
-- [ ] Integration scenario 1
-- [ ] Integration scenario 2
-- [ ] API endpoint tests
-- [ ] Integration scenario 3 (failure mode / rollback)
+### Test Types (AI Agent Strengths)
+AI agents excel at automatically generating:
+1. **Logic Testing**: Function behavior with various parameters
+2. **Edge Cases**: Null, undefined, empty, boundary values systematically
+3. **Parameter Combinations**: Cartesian products and systematic variations
+4. **Error Handling**: Invalid inputs, exceptions, error messages
+5. **Type Safety**: Type mismatches, missing properties, contract violations
+6. **Property-Based Testing**: Mathematical properties (commutativity, associativity, idempotency)
+7. **Coverage Analysis**: Identifying and filling coverage gaps
+8. **Regression Testing**: Test generation from code changes and bug reports
 
-## End-to-End Tests
-**What user flows need validation?**
+### Test Types (Not in Scope)
+The workflow focuses on simple, fast tests. Complex tests should be handled separately:
+- Integration tests between multiple services (requires heavy setup)
+- Complex UI rendering tests (requires heavy DOM setup)
+- E2E flows or end-to-end user journey tests
+- Performance/load testing
+- Tests requiring external API calls or database connections
 
-- [ ] User flow 1: [Description]
-- [ ] User flow 2: [Description]
-- [ ] Critical path testing
-- [ ] Regression of adjacent features
+### Coverage Targets
+Default targets (adjust if project-specific):
+- Lines: 80%
+- Branches: 70%
+- Functions: 90%
 
-## Test Data
-**What data do we use for testing?**
+Coverage is automatically analyzed and gaps are filled by generating additional tests.
 
-- Test fixtures and mocks
-- Seed data requirements
-- Test database setup
+## Template Reference
+See `feature-template.md` for the exact structure required for test plans.
 
-## Test Reporting & Coverage
-**How do we verify and communicate test results?**
+## Related Documentation
+- Planning docs: `../planning/`
+- Implementation notes: `../implementation/`
+- Project standards: `../project/`
 
-- Coverage commands and thresholds (`npm run test -- --coverage`)
-- Coverage gaps (files/functions below 100% and rationale)
-- Links to test reports or dashboards
-- Manual testing outcomes and sign-off
+## Validation Requirements
+- After each batch of implementation edits, run:
+  - Linter on changed files (must pass; auto-fix up to 3 attempts)
+  - Type checks (must pass)
+  - Build (must be green)
+- Map test cases to the feature's Acceptance Criteria.
 
-## Manual Testing
-**What requires human validation?**
+---
 
-- UI/UX testing checklist (include accessibility)
-- Browser/device compatibility
-- Smoke tests after deployment
-
-## Performance Testing
-**How do we validate performance?**
-
-- Load testing scenarios
-- Stress testing approach
-- Performance benchmarks
-
-## Bug Tracking
-**How do we manage issues?**
-
-- Issue tracking process
-- Bug severity levels
-- Regression testing strategy
-
+**Note**: For complex E2E tests, performance testing, or bug tracking strategies, document these separately or in project-level documentation. The `writing-test` command focuses on automated, logic-focused testing that AI agents excel at.

@@ -7,6 +7,7 @@
 - **Data-Driven Design**: Game behavior is defined through data (JSON files) rather than hardcoded logic
 - **Separation of Logic and Data**: Following ECS (Entity-Component-System) pattern where data (Components) is completely separated from processing logic (Systems)
 - **Layered Architecture**: Clear separation between core engine, game logic, and modules
+ - **Skeleton Principle**: Use lightweight, opt-in templates to standardize lifecycle (`init`, `start`, `update`, `stop`, `destroy`) and reduce boilerplate. Apply when patterns repeat, onboarding/testing benefit; avoid for simple one-offs or volatile prototypes. Keep bases small, prefer composition, make dependencies and transitions explicit.
 
 ## Complete Directory Structure
 

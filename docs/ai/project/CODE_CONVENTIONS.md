@@ -141,3 +141,66 @@
 ## Benefits
 
 These conventions ensure **consistency**, **maintainability**, **performance**, and **type safety** across the codebase while supporting the modular ECS architecture and enabling effective team collaboration.
+
+---
+
+## Common Rules (Template Preload)
+
+### Naming — Clarity & Descriptiveness
+- Prefer meaningful, verbose names over abbreviations
+- Avoid 1–2 character identifiers (except tiny loop counters in narrow scope)
+
+### Control Flow
+- Prefer guard clauses (early returns) to reduce nesting depth
+- Handle errors and edge cases first
+- Avoid deep nesting beyond 2–3 levels
+
+### Error Handling
+- Throw errors with clear, actionable messages
+- Do not catch errors without meaningful handling
+
+### Comments
+- Add comments only for complex or non-obvious logic; explain "why", not "how"
+- Place comments above code blocks or use language-specific docstrings
+- Avoid trailing inline comments
+
+### Formatting
+- Match repository formatting tools and styles
+- Prefer multi-line over long one-liners or complex ternaries
+- Wrap long lines and avoid reformatting unrelated code
+
+### Types (statically typed languages)
+- Explicitly annotate public APIs and function signatures
+- Avoid unsafe casts or overly broad types (e.g., `any`)
+
+### Change Discipline
+- Perform changes via file editing tools; avoid pasting large blobs in reviews
+- Re-read target files before editing to ensure accurate context
+- After edits, run fast, non-interactive validation on changed files only:
+  - If ESLint is configured, run it on changed paths; use `--fix` when safe
+  - If TypeScript is used, run type-check only (no emit)
+  - Do not run Prettier as validation (formatting enforced separately by tooling/CI)
+  - Attempt auto-fixes up to 3 times for linter issues before requesting help
+
+## JavaScript Conventions (Essential)
+
+### Language
+- Use ES Modules (`import`/`export`)
+- Prefer `const` by default and `let` when reassignment is required; avoid `var`
+- Use strict equality `===`/`!==`
+- Prefer optional chaining `?.` and nullish coalescing `??` when `0`, `''`, or `false` are valid values
+
+### Functions & Data
+- Keep functions small and single-purpose
+- Prefer immutable updates for objects/arrays; avoid in-place mutations
+- Return early (guard clauses) to reduce nesting
+
+### Errors & Async
+- Use `async/await`; avoid unhandled (floating) promises
+- Throw `Error` with clear messages; catch only when handling meaningfully
+
+### Style & Safety
+- Avoid implicit globals; use module scope only
+- Prefer explicit returns over side effects
+- Keep imports minimal and ordered (standard, third-party, internal)
+
